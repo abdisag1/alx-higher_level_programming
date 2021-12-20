@@ -6,4 +6,4 @@ contains lookup function
 
 def lookup(obj):
     """retruns the attributes and methods of an object """
-    return dir(list)
+    return dir(obj)
