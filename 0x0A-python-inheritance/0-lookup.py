@@ -1,9 +1,9 @@
-#!/bin/usr/python3
+#!/usr/bin/python3
 """
-contains lookup function
+Contains the lookup function
 """
 
 
 def lookup(obj):
-    """retruns the attributes and methods of an object """
+    """returns a list of available attributes and methods of an object"""
     return dir(obj)
