@@ -1,40 +1,41 @@
 #!/usr/bin/python3
-"""
-reads stdin line by line and computes metrics
-"""
-import sys
 
-file_size = 0
-status_tally = {"200": 0, "301": 0, "400": 0, "401": 0,
-                "403": 0, "404": 0, "405": 0, "500": 0}
-i = 0
-try:
-    for line in sys.stdin:
-        tokens = line.split()
-        if len(tokens) >= 2:
-            a = i
-            if tokens[-2] in status_tally:
-                status_tally[tokens[-2]] += 1
-                i += 1
+"""
+101-stats Module
+"""
+
+if __name__ == '__main__':
+
+    import sys
+
+    file_size = 0
+    valid_codes = ["200", "301", "400", "401", "403", "404", "405", "500"]
+    stats = {k: 0 for k in valid_codes}
+    counter = 0
+
+    def print_stats(stats: dict, file_size: int) -> None:
+        print("File size: {:d}".format(file_size))
+        for k, v in sorted(stats.items()):
+            if v:
+                print("{}: {}".format(k, v))
+
+    try:
+        for line in sys.stdin:
+            counter += 1
+            data = line.split()
             try:
-                file_size += int(tokens[-1])
-                if a == i:
-                    i += 1
-            except:
-                if a == i:
-                    continue
-        if i % 10 == 0:
-            print("File size: {:d}".format(file_size))
-            for key, value in sorted(status_tally.items()):
-                if value:
-                    print("{:s}: {:d}".format(key, value))
-    print("File size: {:d}".format(file_size))
-    for key, value in sorted(status_tally.items()):
-        if value:
-            print("{:s}: {:d}".format(key, value))
-
-except KeyboardInterrupt:
-    print("File size: {:d}".format(file_size))
-    for key, value in sorted(status_tally.items()):
-        if value:
-            print("{:s}: {:d}".format(key, value))
+                status_code = data[-2]
+                if status_code in stats:
+                    stats[status_code] += 1
+            except BaseException:
+                pass
+            try:
+                file_size += int(data[-1])
+            except BaseException:
+                pass
+            if counter % 10 == 0:
+                print_stats(stats, file_size)
+        print_stats(stats, file_size)
+    except KeyboardInterrupt:
+        print_stats(stats, file_size)
+        raise
