@@ -114,4 +114,4 @@ class Rectangle(Base):
             elif key == "y":
                 self.__y = value
             elif key == "id":
-                self.id = 
+                self.id = value
