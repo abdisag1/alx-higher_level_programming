@@ -3,6 +3,7 @@
 First Rectangle
 """
 
+
 from models.base import Base
 
 
@@ -25,6 +26,7 @@ class Rectangle(Base):
 
     @width.setter
     def width(self, value):
+        """ width setter"""
         if type(value) is not int:
             raise TypeError("width must be an integer")
         if value <= 0:
@@ -38,6 +40,7 @@ class Rectangle(Base):
 
     @height.setter
     def height(self, value):
+        """ hight setter"""
         if type(value) is not int:
             raise TypeError("height must be an integer")
         if value <= 0:
@@ -51,6 +54,7 @@ class Rectangle(Base):
 
     @x.setter
     def x(self, value):
+        """ x setter"""
         if type(value) is not int:
             raise TypeError("x must be an integer")
         if value < 0:
@@ -64,6 +68,7 @@ class Rectangle(Base):
 
     @y.setter
     def y(self, value):
+        """y setter"""
         if type(value) is not int:
             raise TypeError("y must be an integer")
         if value < 0:
@@ -71,9 +76,11 @@ class Rectangle(Base):
         self.__y = value
 
     def area(self):
+        """ return area of a rectangle"""
         return self.__width * self.__height
 
     def display(self):
+        """ prints rectangle in stdout """
         for m in range(self.__y):
             print()
 
@@ -84,12 +91,13 @@ class Rectangle(Base):
                 print("#", end="")
             print()
 
-
     def __str__(self):
         return ("[Rectangle] ({}) {}/{} - {}/{}"
-                .format(self.id, self.__x, self.__y, self.__width, self.__height))
+                .format(self.id, self.__x, self.__y,
+                        self.__width, self.__height))
 
     def update(self, *args, **kwargs):
+        """ update rectangle """
         for arg in args:
             i = args.index(arg)
             while i < len(args):
@@ -114,4 +122,4 @@ class Rectangle(Base):
             elif key == "y":
                 self.__y = value
             elif key == "id":
-                self.id = value
+                self.id = 
