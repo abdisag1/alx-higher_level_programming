@@ -1,4 +1,4 @@
 #!/usr/bin/node
-let script = process.argv;
-let replace = script[3];
-console.log(`c is ${replace}`);
+let c = process.argv[2];
+let script = process.argv[3];
+console.log(`${c} is ${script}`);
