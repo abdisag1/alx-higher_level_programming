@@ -17,6 +17,6 @@ if __name__ == "__main__":
     rows = Session.query(State).all()
 
     for row in rows:
-        print("{}: {}".format(row.__dict__['id'], row.__dict__['name']))
+        print("{}: {}".format(row.id, row.name))
 
     Session.close()
