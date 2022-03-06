@@ -8,14 +8,17 @@ import MySQLdb
 
 
 if __name__ == "__main__":
-    db_conn = MySQLdb.connect(user =argv[1], passwd=argv[2], db=argv[3], port=330\
-6)
+    db_conn = MySQLdb.connect(user =argv[1], passwd=argv[2], db=argv[3], port=3306)
+   
     state_name = argv[4]
     cursor = db_conn.cursor()
-    cursor.execute("SELECT cities.id, cities.name,states.name FROM cities JOIN st\
-    ates ON cities.id = states.id WHERE states.name LIKE {} ORDER BY cities.id".format(state_name))
+    cursor.execute("SELECT  cities.name FROM cities JOIN states ON cities.id = states.id WHERE states.name LIKE %s ORDER BY cities.id",(state_name,))
     rows = cursor.fetchall()
-    for row in rows:
-        print(row)
+    res = []
+    for i in rows:
+        res.append(i[0])
+
+    print(", ".join(res))
+ 
     cursor.close()
     db_conn.close()
