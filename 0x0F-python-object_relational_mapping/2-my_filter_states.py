@@ -9,10 +9,12 @@ from sys import argv
 
 
 if __name__ == "__main__":
-    db_conn = MySQLdb.connect(host="localhost", user = argv[1], passwd = argv[2],db = argv[3])
+    db_conn = MySQLdb.connect(
+        host="localhost", user=argv[1], passwd=argv[2], db=argv[3])
     searched = argv[4]
     cursor = db_conn.cursor()
-    cursor.execute("SELECT * FROM states WHERE (name = '{}' AND id <3) ORDER BY id".format(searched))
+    cursor.execute("SELECT * FROM states WHERE(name='{}' AND id < 3) \
+                   ORDER BY id".format(searched))
     rows = cursor.fetchall()
     for row in rows:
         print(row)
