@@ -13,8 +13,8 @@ if __name__ == "__main__":
         host="localhost", user=argv[1], passwd=argv[2], db=argv[3])
     searched = argv[4]
     cursor = db_conn.cursor()
-    cursor.execute("SELECT * FROM states WHERE(name='{}' AND id < 3) \
-                   ORDER BY id".format(searched))
+    cur.execute("SELECT * FROM states WHERE BINARY name='{:s}'\
+                ORDER BY id ASC".format(sys.argv[4]))
     rows = cursor.fetchall()
     for row in rows:
         print(row)
