@@ -5,6 +5,8 @@ to the passed URL with the email as a parameter
 """
 import sys
 import urllib.request
+import urllib.parse
+
 
 if __name__ == "__main__":
     url_passed = sys.argv[1]
