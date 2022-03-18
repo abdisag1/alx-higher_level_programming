@@ -11,7 +11,6 @@ if __name__ == "__main__":
     email_passed = {'email': sys.argv[2] }
     data = urllib.parse.urlencode(email_passed).encode("ascii")
 
-    request = urllib.request.Request(url, data) 
+    request = urllib.request.Request(url_passed, data) 
     with urllib.request.urlopen(url_passed) as req:
         print(req.read().decode('utf-8'))
-      
